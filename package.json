@@ -1,0 +1,40 @@
+{
+  "name": "quantium",
+  "version": "1.0.0",
+  "description": "Quantium Internet & Web of Things - A next-generation distributed network protocol",
+  "main": "bin/cli.js",
+  "bin": {
+    "quantium": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "server": "node server/index.js",
+    "dev": "node server/index.js",
+    "test": "node test/run.js",
+    "docker:build": "docker build -t quantium .",
+    "docker:run": "docker run -p 3000:3000 quantium",
+    "docker:compose": "docker-compose up"
+  },
+  "keywords": [
+    "quantum",
+    "iot",
+    "web-of-things",
+    "networking",
+    "ai",
+    "distributed"
+  ],
+  "author": "Quantium Project",
+  "license": "MIT",
+  "homepage": "https://github.com/quantium/quantium-web",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {},
+  "type": "module"
+}
