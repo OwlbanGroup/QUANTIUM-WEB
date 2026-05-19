@@ -1,0 +1,43 @@
+# Quantium Docker Compose
+# Quantium Internet & Web of Things
+
+version: '3.8'
+
+services:
+  quantium:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: quantium:latest
+    container_name: quantium-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - quantium-net
+
+  # Optional: Redis for caching (commented out - uncomment if needed)
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: quantium-redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis-data:/data
+  #   restart: unless-stopped
+
+networks:
+  quantium-net:
+    driver: bridge
+
+# volumes:
+#   redis-data:
